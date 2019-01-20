@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<project name="kotlin project" default="build" basedir=".">
+    <property name="kotlin.lib" location="/home/arm/usr/kotlinc/lib"/>
+    <typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/>
+
+    <target name="build">
+        <kotlinc src="src/" output="bin/"/>
+    </target>
+    <target name="run" depends="build">
+        <java classname="MainKt" classpath="bin/" />
+    </target>
+    <target name="clean">
+    <delete dir="bin/" />
+    </target>
+</project>
