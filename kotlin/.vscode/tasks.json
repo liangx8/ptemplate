@@ -4,26 +4,35 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "AnotherBuild",
+            "label": "Ainit",
+            "type": "shell",
+            "command":"mkdir",
+            "group": "none",
+            "args": [
+                "${workspaceFolder}/bin"
+            ],
+            "problemMatcher":[]
+        },{
+            "label": "Build",
+            //"dependsOn":"Ainit",
             "type": "shell",
             "command": "$HOME/usr/kotlinc/bin/kotlinc",
             "group": "none",
             "args": [
                 "-d",
                 "${workspaceFolder}/bin",
-                "${file}"
+                "${workspaceFolder}/src"
             ],
             "options": {
                 "env": {
                     "JAVACMD": "/home/arm/usr/java/bin/java",
                     "JAVA_HOME": "/home/arm/usr/java"
-                },
-                "cwd": "${workspaceFolder}/src"
+                }
             },
             "problemMatcher":[]
         },
         {
-            "label": "Build",
+            "label": "AntBuild",
             "type": "shell",
             "command": "$HOME/usr/apache-ant-1.10.5/bin/ant",
             "group": {
@@ -39,13 +48,28 @@
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": []
+        },{
+            "label": "AntRun",
+            "type": "shell",
+            "command":"$HOME/usr/apache-ant-1.10.5/bin/ant",
+            "group":"none",
+            "args": ["run"],
+            "options": {
+                "env": {
+                    "JAVA_HOME":"/home/arm/usr/java"
+                },
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher":[]
         },
         {
-            "label": "AnthorRun",
+            "label": "RunByJAVA",
             "type": "shell",
             "command": "$HOME/usr/java/bin/java",
             "group": "none",
             "args": [
+                "-classpath",
+                ".",
                 "MainKt"
             ],
             "options": {
@@ -58,13 +82,19 @@
         },
         {
             "label": "Run",
+            //"dependsOn":"Build",
             "type": "shell",
-            "command": "$HOME/usr/apache-ant-1.10.5/bin/ant",
+            "command": "$HOME/usr/kotlinc/bin/kotlin",
             "group": "none",
-            "args": ["run"],
+            "args": [
+                "-classpath",
+                ".",
+                "MainKt"
+            ],
             "options": {
-                "cwd": "${workspaceFolder}",
+                "cwd": "${workspaceFolder}/bin",
                 "env": {
+                    "JAVACMD":"/home/arm/usr/java/bin/java",
                     "JAVA_HOME": "/home/arm/usr/java"
                 }
             },
