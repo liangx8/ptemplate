@@ -36,8 +36,10 @@ SECTIONS
   }  > data AT> text
   .bss  ADDR(.data) + SIZEOF (.data)   : AT (ADDR (.bss))
   {
+     __bss_start = .;
     *(.bss)
      *(.bss*)
+     __bss_end = .;
   }  > data
   .noinit  ADDR(.bss) + SIZEOF (.bss)  :  AT (ADDR (.noinit))
   {

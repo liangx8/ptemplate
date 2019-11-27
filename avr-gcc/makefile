@@ -49,10 +49,10 @@ ${LSS}:${ELF}
 disa:${HEX}
 	${OBJDUMP} -m avr -D $< > disa.lss
 fuse:
-	$(AVRDUDE) ${AVRDUDE_TARGET} -U lfuse:w:0x62:m -U hfuse:w:0xdf:m -U efuse:w:0xfe:m
+	$(AVRDUDE) ${AVRDUDE_TARGET} -U lfuse:w:0xe2:m -U hfuse:w:0xdd:m -U efuse:w:0xfe:m
 lock:
 	$(AVRDUDE) ${AVRDUDE_TARGET} -U lock:w:0xfc:m
-burn:$(TARGET).hex
+burn:$(HEX)
 	$(AVRDUDE) ${AVRDUDE_TARGET} -U flash:w:$<:i
 
 readflash:
@@ -63,6 +63,6 @@ clean:
 
 
 .c.o:
-	${CC} -c ${CFLAGS} $< -o $@
+	${CC} ${CFLAGS} $< -o $@
 .S.o:
-	${CC} -c ${CFLAGS} -g $< -o $@
+	${CC} ${CFLAGS} -g $< -o $@
