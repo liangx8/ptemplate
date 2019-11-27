@@ -44,6 +44,13 @@
             },
             "args": ["run"],
             "problemMatcher":[]
+        },{
+            "label": "help",
+            "type":"shell",
+            "group": "none",
+            "command":"$HOME/usr/java/bin/java",
+            "args": ["--list-modules"],
+            "problemMatcher":[]
         }
     ]
 }
